@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FaTech Manager - Listagem</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Ícones Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .table-hover tbody tr:hover {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- Declara a navbar -->
+    <div class="container"> <!-- Cria uma divisão -->
+      <a class="navbar-brand fw-bold" href="index.html"> <!-- Cria um botão que leva ao Index -->
+        <i class="bi bi-cpu"></i> FaTech Manager <!-- "bi bi-cpu" é um ícone do Bootstrap CSS, <i> é o texto que vai ao lado do ícone dentro do botão -->
+      </a>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"> <!-- Botão que faz navbar expandir e retrair em dispositivos menores -->
+        <span class="navbar-toggler-icon"></span>
+      </button> <!-- Fecha o botão -->
+
+      <div class="collapse navbar-collapse" id="menu">  <!-- Declara a divisão da navbar com os botões que redirecionam à outras páginas -->
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li> <!-- Botão que leva ao Index -->
+          <li class="nav-item"><a class="nav-link" href="cadastros.html">Cadastros</a></li> <!-- Botão que leva ao Cadastros -->
+          <li class="nav-item"><a class="nav-link active" href="listagem.html">Listagem</a></li> <!-- Botão que leva à Listagem, nesse caso já está selecionado, então "nav-link active" destaca a "Listagem" na navbar-->
+        </ul>
+      </div> <!-- Fecha a divisão dos botões que redirecionam à outras páginas -->
+    </div> <!-- Fecha a divisão do container -->
+  </nav> <!-- Fecha a NavBar -->
+
+  <!-- ================= CONTEÚDO PRINCIPAL ================= -->
+  <section class="container my-5"> <!-- Abre uma seção do conteúdo principal da página -->
+    <h2 class="text-center mb-4 fw-bold">Listagem de Clientes</h2> <!-- Define o título centralizado e em negrito -->
+    <p class="text-muted text-center mb-4">Visualize e gerencie os cadastros realizados.</p> <!-- Define um parágrafo centralizado -->
+
+    <!-- Botões de controle -->
+    <div class="text-end mb-3"> <!-- Abre a divisão dos botões -->
+      <button class="btn btn-outline-primary btn-sm" id="btnRecarregar"> <!-- Define o botão de recarregar -->
+        <i class="bi bi-arrow-clockwise"></i> Recarregar <!-- Elementos visuais do botão (Ícone CSS e Texto) -->
+      </button> <!-- Fecha o botão de recarregar -->
+      <button class="btn btn-outline-danger btn-sm" id="btnLimpar"> <!-- Define o botão de limpar -->
+        <i class="bi bi-trash3"></i> Limpar Todos <!-- Elementos visuais do botão (Ícone CSS e Texto) -->
+      </button> <!-- Fecha o botão de limpar -->
+    </div> <!-- Fecha a divisão dos botões -->
+
+    <!-- Tabela -->
+    <div class="table-responsive shadow-sm"> <!-- Abre a divisão da tabela -->
+      <table class="table table-striped table-hover align-middle" id="tabelaClientes"> <!-- Abre a tabela e declara formato -->
+        <thead class="table-dark"> <!-- Abre uma classe -->
+          <tr> <!-- Cria as colunas da tabela -->
+            <th>#</th> <!-- Coluna -->
+            <th>Nome</th> <!-- Coluna dos nomes -->
+            <th>E-mail</th> <!-- Coluna dos e-mails -->
+            <th>Telefone</th> <!-- Coluna dos telefones -->
+            <th>Setor</th> <!-- Coluna dos setores -->
+            <th>Observações</th> <!-- Coluna das observações -->
+            <th>Ações</th> <!-- Coluna das ações -->
+          </tr> <!-- Fecha as colunas da tabela -->
+        </thead> <!-- Fecha a classe -->
+        <tbody></tbody> <!-- Abre e fecha o corpo da tabela -->
+      </table> <!-- Fecha a tabela -->
+    </div> <!-- Fecha a divisão da tabela -->
+
+    <!-- Alerta se não houver dados -->
+    <div class="alert alert-warning text-center mt-4 d-none" id="alertaVazio"> <!-- Abre uma divisão do alerta-->
+      Nenhum cliente cadastrado até o momento. <!-- Manda um feedback -->
+    </div> <!-- Fecha a divisão do alerta -->
+  </section> <!-- Fecha a seção do conteúdo principal da página -->
+
+  <!-- ================= MODAL DE EDIÇÃO ================= -->
+  <div class="modal fade" id="modalEditar" tabindex="-1"> <!-- Abre a divisão do modal -->
+    <div class="modal-dialog"> <!-- Abre uma divisão do diálogo do modal -->
+      <div class="modal-content"> <!-- Abre uma divisão com o conteúdo do modal -->
+
+        <div class="modal-header bg-warning text-dark"> <!-- Abre uma divisão para editar o modal -->
+          <h5 class="modal-title"><i class="bi bi-pencil-square"></i> Editar Cliente</h5> <!-- Declara o título com Ícone CSS e Texto de "Editar Cliente" -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button> <!-- Abre, declara o botão e suas funções, e fecha o botão -->
+        </div> <!-- Fecha a divisão para editar o modal -->
+
+        <div class="modal-body"> <!-- Abre a divisão do corpo do modal -->
+          <label class="form-label fw-semibold">Nome</label> <!-- Declara o "rótulo" do corpo do modal -->
+          <input class="form-control mb-2" id="editNome"> <!-- Faz a permissão de alterar as informações na seção "Nome" -->
+
+          <label class="form-label fw-semibold">E-mail</label> <!-- Declara o "rótulo" da seção "E-mails" no corpo do modal -->
+          <input class="form-control mb-2" id="editEmail"><!-- Faz a permissão de alterar as informações na seção "E-mail" -->
+
+          <label class="form-label fw-semibold">Telefone</label> <!-- Declara o "rótulo" do corpo do modal -->
+          <input class="form-control mb-2" id="editTelefone"> <!-- Faz a permissão de alterar as informações na seção "Telefone" -->
+
+          <label class="form-label fw-semibold">Setor</label> <!-- Declara o "rótulo" do corpo do modal -->
+          <select id="editSetor" class="form-select mb-2"> <!-- Faz a permissão de alterar as informações na seção "Setor" em forma de lista -->
+            <option>Comercial</option> <!-- Opção na lista -->
+            <option>Financeiro</option> <!-- Opção na lista -->
+            <option>Técnico</option> <!-- Opção na lista -->
+            <option>Suporte</option> <!-- Opção na lista -->
+          </select> <!-- Fecha o campo de seleção da lista -->
+
+          <label class="form-label fw-semibold">Observações</label> <!-- Declara o "rótulo" do corpo do modal -->
+          <textarea class="form-control" id="editObs" rows="3"></textarea> <!-- Permite escrever no campo de observações -->
+        </div> <!-- Fecha a divisão do corpo do modal geral -->
+
+        <div class="modal-footer"> <!-- Abre uma divisão do rodapé do modal -->
+          <button class="btn btn-warning" id="btnSalvarEdicao"> <!-- Cria o botão para salvar a edição -->
+            <i class="bi bi-save"></i> Salvar alterações <!-- Elementos gráficos do botão, "bi bi-save" é o ícone CSS, junto ao texto "Salvar Alterações" -->
+          </button> <!-- Fecha o botão -->
+        </div> <!-- Fecha a divisão do rodapé do modal -->
+
+      </div> <!-- Fecha a divisão do conteúdo do modal -->
+    </div> <!-- Fecha a divisão do diálogo do modal -->
+  </div> <!-- Fecha a divisão do modal -->
+
+  <!-- ================= MODAL DE SUCESSO ================= -->
+  <div class="modal fade" id="modalSucesso" tabindex="-1"> <!-- Abre a divisão do modal de sucesso -->
+    <div class="modal-dialog modal-sm"> <!-- Cria uma divisão com o diálogo do modal -->
+      <div class="modal-content"> <!-- Cria uma divisão com o conteúdo do modal -->
+        <div class="modal-header bg-success text-white"> <!-- Cria uma divisão com o "cabeçalho" da confirmação -->
+          <h6 class="modal-title"> <!-- Declara um título -->
+            <i class="bi bi-check-circle-fill"></i> Sucesso <!-- Declara o conteúdo gráfico, ícone CSS e texto -->
+          </h6> <!-- Fecha o título -->
+        </div> <!-- Fecha a divisão do "cabeçalho" de confirmação -->
+        <div class="modal-body text-center"> <!-- Abre uma divisão com o corpo do modal -->
+          <p class="mb-0">Cliente atualizado com sucesso!</p> <!-- Declara o parágrafo -->
+        </div> <!-- Fecha a divisão com o corpo do modal -->
+        <div class="modal-footer p-2"> <!-- Abre uma divisão com o rodapé do modal -->
+          <button class="btn btn-success btn-sm" data-bs-dismiss="modal">OK</button> <!-- Cria um botão de "OK" para confirmar -->
+        </div> <!-- Fecha a divisão do rodapé do modal -->
+      </div> <!-- Fecha a divisão do conteúdo do modal -->
+    </div> <!-- Fecha a divisão do diálogo do modal -->
+  </div> <!-- Fecha a divisão do modal de sucesso -->
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="bg-dark text-light text-center py-3"> <!-- Declara o rodapé -->
+    <p class="mb-0">&copy; 2025 FaTech Manager | Desenvolvido para fins acadêmicos.</p> <!-- Declara as informações gráficas, (Símbolo Copyright, Texto) -->
+  </footer> <!-- Fecha o rodapé -->
+
+  <!-- Puxa o Bootstrap JavaScript pelo link -->
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ================= SCRIPT PRINCIPAL ================= -->
+
+  <!-- DOCUMENTAÇÃO DO JAVASCRIPT FOI UTILIZADO IA -->
+
+<script>
+
+  // Variável que guarda o índice do cliente em edição
+  let clienteEditando = null;
+
+  // Função para carregar clientes na tabela
+  function carregarClientes() {
+
+    // Seleciona o corpo da tabela
+    const tabela = document.querySelector('#tabelaClientes tbody');
+
+    // Seleciona alerta de lista vazia
+    const alerta = document.getElementById('alertaVazio');
+
+    // Limpa conteúdo atual da tabela
+    tabela.innerHTML = '';
+
+    // Busca clientes salvos no localStorage
+    const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+    // Verifica se não há clientes cadastrados
+    if (clientes.length === 0) {
+
+      // Mostra alerta de vazio
+      alerta.classList.remove('d-none');
+
+      // Encerra função
+      return;
+    }
+
+    // Esconde alerta se houver clientes
+    alerta.classList.add('d-none');
+
+    // Percorre lista de clientes
+    clientes.forEach((cliente, index) => {
+
+      // Cria linha HTML da tabela
+      const linha = `
+        <tr>
+
+          <!-- Número do cliente -->
+          <td>${index + 1}</td>
+
+          <!-- Nome -->
+          <td>${cliente.nome}</td>
+
+          <!-- Email -->
+          <td>${cliente.email}</td>
+
+          <!-- Telefone -->
+          <td>${cliente.telefone}</td>
+
+          <!-- Setor -->
+          <td>
+            <span class="badge bg-primary">
+              ${cliente.setor}
+            </span>
+          </td>
+
+          <!-- Observações -->
+          <td>${cliente.observacoes || '-'}</td>
+
+          <!-- Botões -->
+          <td>
+
+            <!-- Botão editar -->
+            <button 
+              class="btn btn-sm btn-warning me-1"
+              onclick="editarCliente(${index})"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <!-- Botão excluir -->
+            <button 
+              class="btn btn-sm btn-danger"
+              onclick="excluirCliente(${index})"
+            >
+              <i class="bi bi-trash3"></i>
+            </button>
+
+          </td>
+        </tr>
+      `;
+
+      // Insere linha no final da tabela
+      tabela.insertAdjacentHTML('beforeend', linha);
+    });
+  }
+
+  // Função para excluir cliente
+  function excluirCliente(index) {
+
+    // Confirma exclusão
+    if (confirm('Tem certeza que deseja excluir este cliente?')) {
+
+      // Busca lista de clientes
+      const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+      // Remove cliente pelo índice
+      clientes.splice(index, 1);
+
+      // Atualiza localStorage
+      localStorage.setItem('clientes', JSON.stringify(clientes));
+
+      // Recarrega tabela
+      carregarClientes();
+    }
+  }
+
+  // Função para editar cliente
+  function editarCliente(index) {
+
+    // Guarda índice do cliente em edição
+    clienteEditando = index;
+
+    // Busca lista de clientes
+    const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+    // Seleciona cliente pelo índice
+    const cliente = clientes[index];
+
+    // Preenche campo nome
+    document.getElementById("editNome").value = cliente.nome;
+
+    // Preenche campo email
+    document.getElementById("editEmail").value = cliente.email;
+
+    // Preenche campo telefone
+    document.getElementById("editTelefone").value = cliente.telefone;
+
+    // Preenche campo setor
+    document.getElementById("editSetor").value = cliente.setor;
+
+    // Preenche campo observações
+    document.getElementById("editObs").value = cliente.observacoes;
+
+    // Cria modal de edição
+    const modal = new bootstrap.Modal(
+      document.getElementById('modalEditar')
+    );
+
+    // Exibe modal
+    modal.show();
+  }
+
+  // Evento do botão salvar edição
+  document.getElementById("btnSalvarEdicao")
+    .addEventListener("click", () => {
+
+      // Busca lista de clientes
+      const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+      // Atualiza cliente editado
+      clientes[clienteEditando] = {
+
+        // Atualiza nome
+        nome: document.getElementById("editNome").value,
+
+        // Atualiza email
+        email: document.getElementById("editEmail").value,
+
+        // Atualiza telefone
+        telefone: document.getElementById("editTelefone").value,
+
+        // Atualiza setor
+        setor: document.getElementById("editSetor").value,
+
+        // Atualiza observações
+        observacoes: document.getElementById("editObs").value
+      };
+
+      // Salva alterações no localStorage
+      localStorage.setItem(
+        "clientes",
+        JSON.stringify(clientes)
+      );
+
+      // Atualiza tabela
+      carregarClientes();
+
+      // Obtém instância do modal de edição
+      const modalEdicao = bootstrap.Modal.getInstance(
+        document.getElementById('modalEditar')
+      );
+
+      // Fecha modal de edição
+      modalEdicao.hide();
+
+      // Cria modal de sucesso
+      const modalSucesso = new bootstrap.Modal(
+        document.getElementById('modalSucesso')
+      );
+
+      // Exibe modal de sucesso
+      modalSucesso.show();
+
+      // Fecha modal automaticamente após 2 segundos
+      setTimeout(() => {
+
+        // Fecha modal
+        modalSucesso.hide();
+
+      }, 2000);
+    });
+
+  // Evento do botão recarregar
+  document.getElementById('btnRecarregar')
+    .addEventListener('click', carregarClientes);
+
+  // Evento do botão limpar tudo
+  document.getElementById('btnLimpar')
+    .addEventListener('click', () => {
+
+      // Confirma limpeza
+      if (confirm('Deseja realmente apagar todos os cadastros?')) {
+
+        // Remove clientes do localStorage
+        localStorage.removeItem('clientes');
+
+        // Atualiza tabela
+        carregarClientes();
+      }
+    });
+
+  // Executa função ao carregar página
+  window.onload = carregarClientes;
+
+</script>
+</body> <!-- Fecha o corpo da página -->
+</html> <!-- Fecha o documento do HTML -->

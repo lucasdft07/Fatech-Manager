@@ -1,0 +1,235 @@
+<!DOCTYPE html> <!-- Declara que o documento é em formato HTML -->
+<html lang="pt-br"> <!-- Define a linguagem do documento HTML -->
+<head> <!-- Começa o cabeçalho -->
+  <meta charset="UTF-8"> <!-- Define o padrão de codificação web -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ajusta o conteúdo da página de acordo com a largura do dispositivo -->
+  <title>FaTech Manager - Cadastros</title> <!-- Define o título da página, visto na aba superior no navegador -->
+
+  <!-- Puxa o CSS Bootstrap pelo link -->
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Puxa os ícones do Bootstrap pelo link -->
+  <!-- Ícones Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Define o estilo da página -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Declara as fontes a serem usadas na página */
+    }
+  </style> <!-- Fecha o estilo da página -->
+</head> <!-- Fecha o cabeçalho -->
+
+<body> <!-- Começa o corpo da página -->
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- Declara a navbar -->
+    <div class="container"> <!-- Cria uma divisão -->
+      <a class="navbar-brand fw-bold" href="index.html"> <!-- Cria um botão que leva ao Index -->
+        <i class="bi bi-cpu"></i> FaTech Manager <!-- "bi bi-cpu" é um ícone do Bootstrap CSS, <i> é o texto que vai ao lado do ícone dentro do botão -->
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"> <!-- Botão que faz navbar expandir e retrair em dispositivos menores -->
+        <span class="navbar-toggler-icon"></span>
+      </button> <!-- Fecha o botão -->
+
+      <div class="collapse navbar-collapse" id="menu"> <!-- Declara a divisão da navbar com os botões que redirecionam à outras páginas -->
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li> <!-- Botão que leva ao Index -->
+          <li class="nav-item"><a class="nav-link active" href="cadastros.html">Cadastros</a></li> <!-- Botão que leva ao Cadastros, nesse caso já está selecionado, então "nav-link active" destaca o "Cadastro" na navbar -->
+          <li class="nav-item"><a class="nav-link" href="listagem.html">Listagem</a></li> <!-- Botão que leva à Listagem -->
+        </ul>
+      </div> <!-- Fecha a divisão dos botões que redirecionam à outras páginas -->
+    </div> <!-- Fecha a divisão do container -->
+  </nav> <!-- Fecha a NavBar -->
+
+  <!-- ================= CONTEÚDO PRINCIPAL ================= -->
+  <section class="container my-5"> <!-- Abre a seção do conteúdo principal -->
+    <h2 class="text-center mb-4 fw-bold">Cadastro de Clientes</h2> <!-- Declara o título em negrito ("fw-bold") e texto centralizado -->
+    <p class="text-muted text-center mb-5">Preencha as informações abaixo para cadastrar um novo cliente.</p> <!-- Declara o parágrafo, texto centralizado ("text-center") -->
+
+    <!-- Formulário com validação Bootstrap -->
+    <form class="needs-validation" novalidate id="formCadastro"> <!-- Declara o formulário -->
+      <div class="row g-3">
+        <!-- Nome -->
+        <div class="col-md-6"> <!-- Abre uma divisão -->
+          <label for="nome" class="form-label fw-semibold">Nome completo</label> <!-- Título -->
+          <input type="text" class="form-control" id="nome" placeholder="Digite o nome" required> <!-- Faz o requerimento para preencher com os dados, nesse casso só aceita texto -->
+          <div class="invalid-feedback">Informe o nome completo.</div> <!-- Envia o feedback -->
+        </div> <!-- Fecha a divisão -->
+
+        <!-- E-mail -->
+        <div class="col-md-6"> <!-- Abre a divisão -->
+          <label for="email" class="form-label fw-semibold">E-mail</label> <!-- Declara o formulário -->
+          <input type="email" class="form-control" id="email" placeholder="email@exemplo.com" required> <!-- Faz o requerimento para preencher com os dados, nesse casso só irá aceitar e-mail's -->
+          <div class="invalid-feedback">Informe um e-mail válido.</div> <!-- Envia o feedback -->
+        </div> <!-- Fecha a divisão -->
+
+        <!-- Telefone -->
+        <div class="col-md-6"> <!-- Abre a divisão -->
+          <label for="telefone" class="form-label fw-semibold">Telefone</label> <!-- Título -->
+          <input type="tel" class="form-control" id="telefone" placeholder="(11) 99999-9999" required> <!-- Faz o requerimento para preencher com os dados, nesse caso só irá aceitar número de telefone e irá verificar se é válido -->
+          <div class="invalid-feedback">Informe o telefone.</div> <!-- Envia o feedback -->
+        </div> <!-- Fecha a divisão -->
+
+        <!-- Setor -->
+        <div class="col-md-6"> <!-- Abre a divisão -->
+          <label for="setor" class="form-label fw-semibold">Setor</label> <!-- Título -->
+          <select class="form-select" id="setor" required> <!-- Abre o Faz o requerimento para preencher, nesse caso, selecionar um item da lista -->
+            <option value="">Selecione...</option> <!-- Informa para selecionar -->
+            <option>Comercial</option> <!-- Opção de item na lista -->
+            <option>Financeiro</option> <!-- Opção de item na lista -->
+            <option value="TI">TI</option> <!-- Opção de item na lista -->
+            <option value="Financeiro">Financeiro</option> <!-- Opção de item na lista -->
+            <option value="RH">RH</option> <!-- Opção de item na lista -->
+            <option>Técnico</option> <!-- Opção de item na lista -->
+            <option>Suporte</option> <!-- Opção de item na lista -->
+          </select> <!-- Fecha o campo de seleção -->
+          <div class="invalid-feedback">Selecione um setor.</div>
+        </div>
+
+        <!-- Observações -->
+        <div class="col-12"> <!-- Abre a divisão -->
+          <label for="observacoes" class="form-label fw-semibold">Observações</label> <!-- Título do campo "Observações" -->
+          <textarea class="form-control" id="observacoes" rows="3" placeholder="Informações adicionais..."></textarea> <!-- Adiciona a área para digitar junto com o placeholder -->
+        </div> <!-- Fecha a divisão -->
+      </div>
+
+      <!-- Botão de envio -->
+      <div class="text-center mt-4"> <!-- Abre a divisão com texto centralizado -->
+        <button class="btn btn-primary btn-lg" type="submit"> <!-- Abre a divisão do botão -->
+          <i class="bi bi-check-circle"></i> Salvar Cadastro <!-- "bi bi-check-failure" é o ícone do Bootstrap CSS, junto ao texto "Salvar Cadastro" dentro do botão -->
+        </button> <!-- Fecha a divisão do botão -->
+      </div> <!-- Fecha a divisão -->
+    </form> <!-- Fecha o formulário -->
+  </section> <!-- Fecha a seção do conteúdo principal -->
+
+  <!-- ================= MODAL DE CONFIRMAÇÃO ================= -->
+  <div class="modal fade" id="modalSucesso" tabindex="-1" aria-labelledby="modalSucessoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"> <!-- Abre uma divisão com o modal de diálogo centralizado -->
+      <div class="modal-content"> <!-- Abre a divisão com o conteúdo do modal -->
+        <div class="modal-header bg-success text-white"> <!-- Abre uma divisão com o modal de sucesso, texto em branco -->
+          <h5 class="modal-title" id="modalSucessoLabel"><i class="bi bi-check-circle"></i> Cadastro realizado!</h5> <!-- Define o texto dentro do diálogo, junto com ícone CSS ("bi bi-check-circle") -->
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button> <!-- Cria um botão para fechar o modal -->
+        </div> <!-- Fecha a divisão do modal de sucesso -->
+        <div class="modal-body"> <!-- Abre a divisão com o corpo do modal -->
+          O cliente foi cadastrado com sucesso. <!-- Manda um feedback -->
+        </div> <!-- Fecha a divisão do corpo do modal-->
+        <div class="modal-footer"> <!-- Abre uma divisão do rodapé do modal -->
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button> <!-- Cria o botão para fechar o modal -->
+        </div> <!-- Fecha a divisão do rodapé do modal -->
+      </div> <!-- Fecha a divisão com o conteúdo do modal -->
+    </div> <!-- Fecha a divisão com o modal de diálogo centralizado -->
+  </div>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="bg-dark text-light text-center py-3"> <!-- Declara e define o rodapé com texto centralizado -->
+    <p class="mb-0">&copy; 2025 FaTech Manager | Desenvolvido para fins acadêmicos.</p> <!-- Define o parágrafo com informações e símbolo de Copyright -->
+  </footer> <!-- Fecha o rodapé -->
+
+  <!-- Puxa o Bootstrap JavaScript pelo link -->
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script de Validação e LocalStorage -->
+
+<!-- DOCUMENTAÇÃO DO JAVASCRIPT FOI UTILIZADO IA -->
+ 
+<script>
+  // Função autoexecutável para evitar variáveis globais
+  (() => {
+
+    // Ativa modo estrito do JavaScript
+    'use strict';
+
+    // Seleciona todos os formulários com a classe "needs-validation"
+    const forms = document.querySelectorAll('.needs-validation');
+
+    // Percorre cada formulário encontrado
+    Array.from(forms).forEach(form => {
+
+      // Escuta o evento de envio do formulário
+      form.addEventListener('submit', event => {
+
+        // Verifica se o formulário é inválido
+        if (!form.checkValidity()) {
+
+          // Impede o envio do formulário
+          event.preventDefault();
+
+          // Impede propagação do evento
+          event.stopPropagation();
+
+        } else {
+
+          // Impede recarregamento da página
+          event.preventDefault();
+
+          // Cria objeto com dados do cliente
+          const cliente = {
+            nome: document.getElementById('nome').value, // Captura nome
+            email: document.getElementById('email').value, // Captura email
+            telefone: document.getElementById('telefone').value, // Captura telefone
+            setor: document.getElementById('setor').value, // Captura setor
+            observacoes: document.getElementById('observacoes').value // Captura observações
+          };
+
+          // Busca lista salva no localStorage ou cria array vazio
+          const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+          // Adiciona novo cliente ao array
+          clientes.push(cliente);
+
+          // Salva lista atualizada no localStorage
+          localStorage.setItem('clientes', JSON.stringify(clientes));
+
+          // Cria instância do modal Bootstrap
+          const modal = new bootstrap.Modal(document.getElementById('modalSucesso'));
+
+          // Exibe modal de sucesso
+          modal.show();
+
+          // Limpa os campos do formulário
+          form.reset();
+
+          // Remove classe de validação visual
+          form.classList.remove('was-validated');
+        }
+
+        // Adiciona classe visual de validação Bootstrap
+        form.classList.add('was-validated');
+
+      }, false);
+    });
+
+  })();
+
+  // Seleciona campo de telefone
+  const campoTelefone = document.getElementById('telefone');
+
+  // Escuta digitação no campo telefone
+  campoTelefone.addEventListener('input', (e) => {
+
+    // Remove tudo que não for número
+    let valor = e.target.value.replace(/\D/g, '');
+
+    // Verifica se telefone possui 11 dígitos
+    if (valor.length > 10) {
+
+      // Formata celular: (99) 99999-9999
+      valor = valor.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+
+    } else {
+
+      // Formata telefone fixo: (99) 9999-9999
+      valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+    }
+
+    // Atualiza valor formatado no input
+    e.target.value = valor;
+  });
+
+</script>
+
+</body> <!-- Fecha o corpo da página -->
+</html> <!-- Fecha o HTML -->

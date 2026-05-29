@@ -1,0 +1,123 @@
+<!DOCTYPE html> <!-- Declara que o documento é em formato HTML -->
+<html lang="pt-br"> <!-- Define a linguagem do documento HTML -->
+<head> <!-- Começa o cabeçalho -->
+  <meta charset="UTF-8"> <!-- Define o padrão de codificação web -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ajusta o conteúdo da página de acordo com a largura do dispositivo -->
+  <title>FaTech Manager - Gestão de TI</title> <!-- Define o título da página, visto na aba superior no navegador -->
+  
+  <!-- Puxa o CSS Bootstrap pelo link -->
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Puxa os ícones do Bootstrap pelo link -->
+  <!-- Ícones do Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Define o estilo da página -->
+  <style>
+    /* Estilos complementares, define as fontes */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    /* "Hero" é o fundo azul, centro da página */
+    .hero {
+      background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    /* Animação de quando passa o mouse em cima do botão */
+    .card:hover {
+      transform: scale(1.03);
+      transition: 0.3s;
+    }
+  </style> <!-- Fecha o estilo da página -->
+</head> <!-- Fecha o cabeçalho -->
+
+<body> <!-- Começa o corpo da página -->
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- Declara a navbar -->
+    <div class="container"> <!-- Cria uma divisão -->
+      <a class="navbar-brand fw-bold" href="index.html"> <!-- Cria um botão que leva ao Index -->
+        <i class="bi bi-cpu"></i> FaTech Manager <!-- "bi bi-cpu" é um ícone do Bootstrap CSS, <i> é o texto que vai ao lado do ícone dentro do botão -->
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"> <!-- Botão que faz navbar expandir e retrair em dispositivos menores -->
+        <span class="navbar-toggler-icon"></span> 
+      </button> <!-- Fecha o botão -->
+
+      <div class="collapse navbar-collapse" id="menu"> <!-- Declara a divisão da navbar com os botões que redirecionam à outras páginas -->
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Início</a></li> <!-- Botão que leva ao Index, nesse caso já está selecionado, então "nav-link active" destaca o "Início" na navbar -->
+          <li class="nav-item"><a class="nav-link" href="cadastros.html">Cadastros</a></li> <!-- Botão que leva ao Cadastros -->
+          <li class="nav-item"><a class="nav-link" href="listagem.html">Listagem</a></li> <!-- Botão que leva à Listagem -->
+          <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> <!-- Botão que leva ao Contato (NÃO ESTÁ LINKADO COM O CONTATO.HTML! [#]) -->
+        </ul>
+      </div> <!-- Fecha a divisão dos botões que redirecionam à outras páginas -->
+    </div> <!-- Fecha a divisão do container -->
+  </nav> <!-- Fecha a NavBar -->
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero"> <!-- Declara a seção do Hero -->
+    <div class="container"> <!-- Declara um container com informações -->
+      <h1 class="display-4 fw-bold">Gerencie sua empresa com eficiência</h1> <!-- Título dentro do container -->
+      <p class="lead">Soluções modernas em tecnologia da informação para impulsionar sua gestão.</p> <!-- Descrição do container -->
+      <a href="cadastros.html" class="btn btn-light btn-lg mt-3"> <!-- Botão que leva ao "cadastros.html" -->
+        <i class="bi bi-clipboard-plus"></i> Começar Agora <!-- "bi bi-cpliboard-plus" é o ícone do CSS, "Começar Agora"-->
+      </a>
+    </div>
+  </section> <!-- Fecha a seção do Hero -->
+
+  <!-- ================= SEÇÃO DE SERVIÇOS ================= -->
+  <section class="py-5">
+    <div class="container text-center"> <!-- Declara a divisão com texto centralizado -->
+      <h2 class="mb-4 fw-bold">Nossas Soluções</h2> <!-- Título centralizado com texto em negrito -->
+      <p class="text-muted mb-5">Explore as principais áreas de atuação da FaTech Manager.</p> <!-- Subtítulo/Descrição -->
+      <div class="row g-4"> <!-- Cria a divisão dos Cards -->
+
+        <!-- Card 1 -->
+        <div class="col-md-4"> <!-- Abre a divisão do Card -->
+          <div class="card shadow-sm h-100"> <!-- Abre uma divisão da "sombra" do card -->
+            <div class="card-body"> <!-- Cria a divisão como corpo do Card -->
+              <i class="bi bi-cloud-check display-4 text-primary mb-3"></i> <!-- Declara o ícone -->
+              <h5 class="card-title">Gestão em Nuvem</h5> <!-- Define o título do Card -->
+              <p class="card-text text-muted">Armazene e acesse dados de forma segura e escalável com soluções em nuvem.</p> <!-- Define o texto/conteúdo do Card em parágrafo -->
+            </div> <!-- Fecha a divisão do corpo do Card -->
+          </div> <!-- Fecha a divisão da "sombra" -->
+        </div> <!-- Fecha a divisão do Card -->
+
+        <!-- Card 2 -->
+        <div class="col-md-4"> <!-- Abre a divisão do Card -->
+          <div class="card shadow-sm h-100"> <!-- Abre uma divisão da "sombra" do card -->
+            <div class="card-body"> <!-- Cria a divisão como corpo do Card -->
+              <i class="bi bi-graph-up-arrow display-4 text-success mb-3"></i> <!-- Declara o ícone -->
+              <h5 class="card-title">Análise de Dados</h5> <!-- Define o título do Card -->
+              <p class="card-text text-muted">Transforme dados em informações valiosas para apoiar a tomada de decisão.</p>  <!-- Define o texto/conteúdo do Card em parágrafo -->
+            </div> <!-- Fecha a divisão do corpo do Card -->
+          </div>  <!-- Fecha a divisão da "sombra" -->
+        </div>  <!-- Fecha a divisão do Card -->
+
+        <!-- Card 3 -->
+        <div class="col-md-4"> <!-- Abre a divisão do Card -->
+          <div class="card shadow-sm h-100"> <!-- Abre uma divisão da "sombra" do card -->
+            <div class="card-body"> <!-- Cria a divisão como corpo do Card -->
+              <i class="bi bi-shield-lock display-4 text-danger mb-3"></i> <!-- Declara o ícone -->
+              <h5 class="card-title">Segurança Digital</h5> <!-- Define o título do Card -->
+              <p class="card-text text-muted">Proteja seus sistemas e informações com práticas modernas de cibersegurança.</p> <!-- Define o texto/conteúdo do Card em parágrafo -->
+            </div> <!-- Fecha a divisão do corpo do Card -->
+          </div> <!-- Fecha a divisão da "sombra" -->
+        </div> <!-- Fecha a divisão do Card -->
+      </div> <!-- Fecha a divisão dos cards -->
+    </div> <!-- Fecha a divisão com texto centralizado -->
+  </section> <!-- Fecha a seção de serviços abaixo do Hero -->
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="bg-dark text-light text-center py-3"> <!-- Declara o rodapé da página -->
+    <p class="mb-0">&copy; 2025 FaTech Manager | Desenvolvido para fins acadêmicos.</p> <!-- Declara o símbolo do Copyright junto com texto-->
+  </footer> <!-- Fecha o rodapé -->
+
+  <!-- Bootstrap JS -->
+   <!-- Puxa o Bootstrap JavaScript pelo link -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body> <!-- Fecha o corpo do HTML -->
+</html> <!-- Fecha o documento HTML -->
